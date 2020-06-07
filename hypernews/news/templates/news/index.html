@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HyperNews</title>
+</head>
+<body>
+    <h2>Hyper news</h2>
+    <form method="get" action="/news"> {% csrf_token %}
+        <input type="text" name="q">Enter query:</input>
+        <button type="sumbit">Search</button>
+    </form>
+    {% for key, value in news.items %}
+        <h4>{{ key }}</h4>
+        <ul>
+        {% for n in value %}
+            <li><a href="/news/{{ n.link }}/">{{ n.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+    <a href="/news/create/">Create</a>
+</body>
+</html>
